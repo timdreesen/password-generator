@@ -1,0 +1,39 @@
+<html>
+    <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="index.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Generate a <br><span class="secondRow">random password</span></h1> 
+            <p class="subtitle">Never use an insecure password again.</p>
+            <button class="genPassBtn" onclick="genPass()">Generate passwords</button>
+            <hr class="divider">
+                <div class="resultsContainer">
+                    <div class="resultsField"><p class="result1"></p></div>
+                    <div class="resultsField"><p class="result2"></p></div>
+                </div>
+            <hr class="divider">            
+                <div class="toggles">
+                    <label class="lengthSelector">
+                        Length: <input type="number" id="lengthInput" min="1" max="18" value="15">
+                    </label>
+                    <label class="switch">
+                        <input type="checkbox" id="numbersToggle" checked>
+                        <span class="slider"></span>
+                    Numbers
+                    </label>
+
+                    <label class="switch">
+                        <input type="checkbox" id="symbolsToggle" checked>
+                        <span class="slider"></span>
+                    Symbols
+                    </label>
+                </div>
+            </div>
+        </div>
+        <script src="index.js"></script>
+    </body>
+</html>
