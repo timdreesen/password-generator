@@ -1,10 +1,90 @@
 const baseCharacters = [
-  "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
-  "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+  "G",
+  "H",
+  "I",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "O",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "U",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "a",
+  "b",
+  "c",
+  "d",
+  "e",
+  "f",
+  "g",
+  "h",
+  "i",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "o",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "u",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
 ];
 
 const numberCharacters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-const symbolCharacters = ["~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?","/"];
+const symbolCharacters = [
+  "~",
+  "`",
+  "!",
+  "@",
+  "#",
+  "$",
+  "%",
+  "^",
+  "&",
+  "*",
+  "(",
+  ")",
+  "_",
+  "-",
+  "+",
+  "=",
+  "{",
+  "[",
+  "}",
+  "]",
+  ",",
+  "|",
+  ":",
+  ";",
+  "<",
+  ">",
+  ".",
+  "?",
+  "/",
+];
 
 function genPass() {
   const passwordLength = parseInt(lengthInput.value);
@@ -30,24 +110,28 @@ function genPass() {
   document.querySelector(".result2").textContent = password2;
 }
 
-// Function to copy text to clipboard
-function copyToClipboard(text) {
-  navigator.clipboard.writeText(text).then(() => {
-    console.log("Copied:", text);
-    // Optional: give visual feedback
-    alert("Password copied to clipboard!");
-  }).catch(err => {
-    console.error("Failed to copy:", err);
-  });
+function copyToClipboard(element) {
+  const text = element.textContent;
+
+  navigator.clipboard
+    .writeText(text)
+    .then(() => {
+      // Replace text with "Copied!"
+      element.textContent = "Copied!";
+      element.classList.add("copied");
+
+      // After 1 second, fade back to original password
+      setTimeout(() => {
+        element.classList.remove("copied");
+        element.textContent = text;
+      }, 1000);
+    })
+    .catch((err) => {
+      console.error("Failed to copy:", err);
+    });
 }
 
-// Add click listeners
-document.querySelector(".result1").parentElement.addEventListener("click", () => {
-  const text = document.querySelector(".result1").textContent;
-  if (text) copyToClipboard(text);
-});
-
-document.querySelector(".result2").parentElement.addEventListener("click", () => {
-  const text = document.querySelector(".result2").textContent;
-  if (text) copyToClipboard(text);
+// Attach click listeners
+document.querySelectorAll(".result1, .result2").forEach((el) => {
+  el.addEventListener("click", () => copyToClipboard(el));
 });
